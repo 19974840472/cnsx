@@ -1,0 +1,89 @@
+<!--引入模板-->
+{{extend './public.html'}}
+
+<!--css文件-->
+{{block 'css'}}
+<link rel="stylesheet" href="css/index.css">
+{{/block}}
+
+<!--内容-->
+{{block 'content'}}
+<!--登录模块-->
+<div class="container-fluid container-lg login dr">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+            <h2 class="text-center p-5">登录</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="dr_email" class="form-label"></label>
+                    <input type="email" class="form-control border-0 border-bottom" id="dr_email" placeholder="电子邮件" name="username">
+                    <span id="email_sp"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="dr_pwd" class="form-label"></label>
+                    <input type="password" class="form-control border-0 border-bottom" id="dr_pwd" placeholder="密码" name="password">
+                    <a href="#">忘记您的密码了？</a>
+                </div>
+                <button id="dr_btn" type="submit" class="btn btn-light w-100 rounded-pill mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">登入</button>
+                <p class="text-center"><a href="/create">创建账户</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+<!--登录弹窗-->
+<div class="modal fade shopping" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">登录</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
+            </div>
+            <div class="modal-body">
+                <h2 id="zc_h2">成功</h2>
+            </div>
+            <div class="modal-footer">
+                <button  type="button" class="btn btn-primary" data-bs-dismiss="modal" id="wc">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/block}}
+
+
+<!--js文件-->
+{{block 'js'}}
+<script>
+    $("#dr_btn").click(function (e){
+        e.preventDefault();
+        let email=$("#dr_email").val()
+        let password=$("#dr_pwd").val()
+
+        $.ajax({
+            // 请求地址
+            url:"/api/login",
+            //请求类型
+            type:"POST",
+            //请求参数
+            data:{email,password},
+            //请求成功
+            success:function (result){
+                if ( result.code === 200 ) {
+                    $('#zc_h2').html(`恭喜您，${result.msg}`);
+                    $("#wc").click(()=>{
+                        location.href="/my"
+                    });
+                }else if( result.code === 500 ){
+                    $('#zc_h2').html(`不好意思，${result.msg}`);
+                    $("#wc").click(()=>{
+                        location.href="/login"
+                    });
+                }
+            },
+            //请求失败
+            error:function (result){
+                alert("请求失败")
+            }
+        })
+    })
+</script>
+{{/block}}

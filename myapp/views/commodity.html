@@ -1,0 +1,126 @@
+<!--引入模板-->
+{{extend './public.html'}}
+
+<!--css文件-->
+{{block 'css'}}
+<link rel="stylesheet" href="css/index.css">
+<!--  轮播图css-->
+<link rel="stylesheet" href="css/swiper.css" />
+<!--  轮播图js-->
+<script src="js/swiper.js"></script>
+{{/block}}
+
+<!--内容-->
+{{block 'content'}}
+{{if article.img.length>1}}
+<!--大屏幕-->
+<div class="container login p-5 commodity2 d-none d-lg-block">
+  <div class="row">
+    <div class="col-12 col-lg-6 ">
+      <div>
+        <h2>{{article.title}}</h2>
+        <p class="mb-5">${{article.price}}</p>
+        <p id="cg"></p>
+        <button  type="button" class="add_btn btn btn-outline-success rounded-pill w-100 mt-5 mb-5">添加到购物车</button>
+        <p>{{article.content}}</p>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      {{each article.img}}
+      <img src="img/{{$value}}" alt="" class="w-100">
+      {{/each}}
+
+    </div>
+  </div>
+
+</div>
+<!--小屏幕-->
+<div class="container-fluid d-lg-none p-5">
+  <!--  轮播图-->
+  <div class="swiper w-100">
+    <ul class="pic">
+      <li class="now"><a href="#"><img src="img/{{article.img[0]}}" alt="" /></a></li>
+      <li class="next"><a href="#"><img src="img/{{article.img[1]}}" alt="" /></a></li>
+      <% for (var i = 2; i < article.img.length; i++) { %>
+      <li><a href="#"><img src="img/<%= article.img[i] %>" alt="" /></a></li>
+      <% } %>
+    </ul>
+    <ol class="cricle"></ol>
+    <div class="btns">
+      <a href="javascript:;" class="leftbtn" style="float: left; margin-left: 6px;"></a>
+      <a href="javascript:;" class="rightbtn" style="float: right; margin-right: 6px;"></a>
+    </div>
+    <div class="leftBox"></div>
+    <div class="rightBox"></div>
+  </div>
+  <div class="container">
+    <h2 class="text-center">{{article.title}}</h2>
+    <p class="text-center">${{article.price}}</p>
+    <p id="cg"></p>
+    <button id="" type="button" class="add_btn btn btn-outline-success rounded-pill w-100 mt-5 mb-5">添加到购物车</button>
+    <p>{{article.content}}</p>
+  </div>
+</div>
+{{else}}
+<div class="container login p-5 commodity2 ">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      {{each article.img}}
+      <img src="img/{{$value}}" alt="" class="w-100">
+      {{/each}}
+    </div>
+    <div class="col-12 col-lg-6 ">
+      <div>
+        <h2 class="mt-3">{{article.title}}</h2>
+        <p class="mb-5">${{article.price}}</p>
+        <p id="cc" class="text-center"></p>
+        <button  type="button" class="add_btn btn btn-outline-success rounded-pill w-100  mb-5">添加到购物车</button>
+        <p>{{article.content}}</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{{/if}}
+{{/block}}
+
+
+<!--js文件-->
+{{block 'js'}}
+<script>
+  // 添加到购物车
+  $(".add_btn").click(function (){
+    let name='{{article.title}}'
+    let img='{{article.img[0]}}'
+    let price='{{article.price}}'
+    let url=window.location.href   //http://localhost:3000/vegetable_commodity?id=1
+    url=url.slice(url.lastIndexOf("/"))
+
+    $.ajax({
+      // 请求地址
+      url:"/api/add_shopping",
+      //请求类型
+      type:"POST",
+      //请求参数
+      data:{name,img,price,url},
+      //请求成功
+      success:function (result){
+        if (result.code === 200) {
+          $("#cg,#cc").html(result.msg).css("color","red")
+          setTimeout(()=>{
+            $("#cg,#cc").html("")
+            },3000)
+        }
+        else if(result.code === 500){
+          location.href="/login"
+        }
+      },
+      //请求失败
+      error:function (result){
+        alert("请求失败")
+      }
+    })
+  })
+</script>
+{{/block}}

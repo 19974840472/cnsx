@@ -1,0 +1,38 @@
+<!--引入模板-->
+{{extend './public.html'}}
+
+<!--css文件-->
+{{block 'css'}}
+<link rel="stylesheet" href="css/index.css">
+{{/block}}
+
+<!--内容-->
+{{block 'content'}}
+<!--水果-->
+<div class="container-fluid container-lg list-sc login ">
+    <h2 class="text-center">精品水果</h2>
+    <div class="mt-5 row">
+        {{each fruit}}
+        <div class="col-12 col-lg-6 p-3 border-bottom">
+            <a href="/fruit_commodity?id={{$value.id}}">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>{{$value.title}}</h2>
+                        <p>${{$value.price}}</p>
+                        <p class="xzsc">{{$value.content}}</p>
+                    </div>
+                    <div class="col-4">
+                        <img src="img/{{$value.img[0]}}" alt="{{$value.title}}">
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/block}}
+
+
+<!--js文件-->
+{{block 'js'}}
+{{/block}}

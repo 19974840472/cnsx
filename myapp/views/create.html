@@ -1,0 +1,157 @@
+<!--引入模板-->
+{{extend './public.html'}}
+
+<!--css文件-->
+{{block 'css'}}
+<link rel="stylesheet" href="css/index.css">
+{{/block}}
+
+<!--内容-->
+{{block 'content'}}
+<!--注册模块-->
+<div class="container-fluid container-lg login zc">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+            <h2 class="text-center p-5">创建账户</h2>
+            <form >
+                <div class="mb-3">
+                    <label for="zc_name" class="form-label"></label>
+                    <input type="text" class="form-control border-0 border-bottom" id="zc_name" placeholder="姓氏">
+                    <span></span>
+                </div>
+                <div class="mb-3">
+                    <label for="zc_surname" class="form-label"></label>
+                    <input type="text" class="form-control border-0 border-bottom" id="zc_surname" placeholder="名字">
+                    <span></span>
+                </div>
+                <div class="mb-3">
+                    <label for="zc_email" class="form-label"></label>
+                    <input type="email" class="form-control border-0 border-bottom" id="zc_email" placeholder="电子邮件" name="username">
+                    <span id="email_sp"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="zc_pwd" class="form-label"></label>
+                    <input type="password" class="form-control border-0 border-bottom" id="zc_pwd" placeholder="密码" name="password">
+                    <span></span>
+                </div>
+                <div class="mb-3">
+                    <label for="zc_pwd2" class="form-label"></label>
+                    <input type="password" class="form-control border-0 border-bottom" id="zc_pwd2" placeholder="再次输入密码">
+                    <span></span>
+                </div>
+                <button id="zc_btn" type="button" class="btn btn-light w-100 rounded-pill mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">创建</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--注册弹窗-->
+<div class="modal fade shopping" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">注册</h5>
+                <button type="button" id="zc_close" class="btn-close" data-bs-dismiss="modal" ></button>
+            </div>
+            <div class="modal-body">
+                <h2 id="zc_h2"></h2>
+            </div>
+            <div class="modal-footer">
+                <!--                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>-->
+                <button  type="button" class="btn btn-primary" data-bs-dismiss="modal" id="wc">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/block}}
+
+
+<!--js文件-->
+{{block 'js'}}
+<script>
+    // 姓名验证 姓名不能为空
+    $("#zc_surname,#zc_name").on("input",function (){
+        if ($(this).val().trim()===""){
+            $(this).next().html("不能为空").css("color","red")
+        }else {
+            $(this).next().html("正确").css("color","green")
+        }
+    })
+
+    // 注册登入 邮箱密码验证
+    $("#zc_email").on("input",function (){
+        let value=$(this).val()
+        let email_reg=new RegExp("^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$","ig")
+        if (email_reg.test(value)){
+            $(this).next().html("正确").css("color","green")
+        }else {
+            $(this).next().html("请输入正确邮箱号").css("color","red")
+        }
+    })
+
+    // 密码验证
+    $("#zc_pwd").on("input",function () {
+        let value = $(this).val()
+        let pwd_reg = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[^]{8,16}$", "g")
+        if (pwd_reg.test(value)) {
+            $(this).next().html("正确").css("color", "green")
+        } else {
+            $(this).next().html("至少8-16个字符，至少1个大写字母，1个小写字母和1个数字").css("color", "red")
+        }
+    })
+    $("#zc_pwd2").on("input",function (){
+        let value=$(this).val()
+        let pwd_reg=new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[^]{8,16}$","g")
+        if (pwd_reg.test(value) && value===$("#zc_pwd").val()){
+            $(this).next().html("正确").css("color","green")
+        }else {
+            $(this).next().html("前后密码输入不一致").css("color","red")
+        }
+    })
+
+    //注册按钮
+    $("#zc_btn").click(function (e){
+        e.preventDefault()
+        var name = $("#zc_name").val();
+        var surname = $("#zc_surname").val();
+        var email = $("#zc_email").val();
+        var password = $("#zc_pwd").val();
+
+        // 判断信息是否填写正确
+        let num=0
+        let span=$(this).prevAll().children("span");
+        for (let i=0;i<span.length;i++) {
+            if ($(span[i]).css("color")==="rgb(0, 128, 0)"){
+                num++
+            }
+        }
+        if (num===5){
+            $.ajax({
+                url:'/api/register',
+                type:"POST",
+                data:{ name,surname,email,password},
+                success:function (result){
+                    if ( result.code === 200 ) {
+                        $("#zc_h2").html(`恭喜您，${result.msg}`);
+
+                    }else if( result.code === 500 ){
+                        $("#zc_h2").html(`不好意思，${result.msg}`);
+                    }
+                    $("#wc").click(()=>{
+                        location.href="/login"
+                    });
+                },
+                //请求失败
+                error:function (error){
+                    alert("请求失败:",error);
+                }
+            })
+        }else {
+            $("#zc_h2").html("注册失败,请正确填写信息");
+            $("#wc").click(()=>{
+                location.href="/create"
+            });
+        }
+    })
+</script>
+{{/block}}

@@ -1,0 +1,60 @@
+<!--引入模板-->
+{{extend './public.html'}}
+
+<!--css文件-->
+{{block 'css'}}
+<link rel="stylesheet" href="css/index.css">
+{{/block}}
+
+<!--内容-->
+{{block 'content'}}
+<!--搜索内容-->
+<div class="container-fluid container-lg login  ">
+  <div class="container list-sc">
+    <h2 class="m-5 text-center">搜索结果</h2>
+    <div class=" row">
+      {{if search_vegetable.length==0 && search_fruit.length==0}}
+      <h2 class="text-center mt-5 mb-5">没有搜索结果.......</h2>
+      {{/if}}
+
+      {{each search_vegetable}}
+      <div class="col-12 col-lg-6 p-3 border-bottom">
+        <a href="/vegetable_commodity?id={{$value.id}}">
+          <div class="row">
+            <div class="col-8">
+              <h2>{{$value.title}}</h2>
+              <p>${{$value.price}}</p>
+              <p class="xzsc">{{$value.content}}</p>
+            </div>
+            <div class="col-4">
+              <img src=img/{{$value.img[0]}} alt="{{$value.title}}">
+            </div>
+          </div>
+        </a>
+      </div>
+      {{/each}}
+      {{each search_fruit}}
+      <div class="col-12 col-lg-6 p-3 border-bottom">
+        <a href="/fruit_commodity?id={{$value.id}}">
+          <div class="row">
+            <div class="col-8">
+              <h2>{{$value.title}}</h2>
+              <p>${{$value.price}}</p>
+              <p class="xzsc">{{$value.content}}</p>
+            </div>
+            <div class="col-4">
+              <img src=img/{{$value.img[0]}} alt="{{$value.title}}">
+            </div>
+          </div>
+        </a>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{/block}}
+
+
+<!--js文件-->
+{{block 'js'}}
+{{/block}}

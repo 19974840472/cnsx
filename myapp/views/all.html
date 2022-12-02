@@ -1,0 +1,36 @@
+<!--引入模板-->
+{{extend './public.html'}}
+
+<!--css文件-->
+{{block 'css'}}
+<link rel="stylesheet" href="css/index.css">
+{{/block}}
+
+<!--内容-->
+{{block 'content'}}
+<!--所有产品-->
+<div class="container login">
+  <h2 class="text-center">产品系列</h2>
+  <div class="row">
+    <div class="col-6 col-lg-4  border-bottom">
+      <a href="/fruit">
+        <div class="all rounded-1 pb-lg-2 pb-1">
+          <img src="img/s1.webp" alt="" class="w-100">
+          <p class="p-3">精品水果</p>
+        </div>
+      </a>
+    </div>
+    <div class="col-6 col-lg-4 border-bottom">
+      <a href="/vegetables">
+        <div class="all rounded-1 ">
+          <img src="img/c2.webp" alt="" class="w-100">
+          <p class="p-3">菜鸟蔬菜</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+{{/block}}
+<!--js文件-->
+{{block 'js'}}
+{{/block}}

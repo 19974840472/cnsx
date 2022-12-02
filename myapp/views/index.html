@@ -1,0 +1,227 @@
+{{extend './public.html'}}
+
+{{block 'css'}}
+<link rel="stylesheet" href="css/index.css">
+{{/block}}
+
+
+{{block 'content'}}
+<!--菜鸟生鲜-->
+<div id="carouselExampleSlidesOnly" class="carousel slide login2" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="img/banner.webp" class="d-block w-100" alt="">
+        </div>
+    </div>
+    <div class="veg col-10 col-lg-4 offset-1 position-absolute ">
+        <h2 class="text-success">菜鸟生鲜-VegeBird</h2>
+        <p class="text-success">无需出门，独享新鲜</p>
+        <a href="/all" type="button" class="btn btn-outline-success rounded-pill">立刻选购</a>
+    </div>
+</div>
+<!--关于部分-->
+<div class="content">
+    <!--    大屏幕显示-->
+    <div class="content_about_bg container d-none d-lg-block">
+        <div class="row m-5">
+            <div class="col-6">
+                <h2>关于"菜鸟"</h2>
+                <p>
+                    Vegebird-菜鸟生鲜，从2020年入驻安省以来，已覆盖大多数GTA地区以及周边城市。我们致力于向客户提供优质严选的产品和贴心严谨的服务。在“菜鸟生鲜”，您不仅可以享受到新鲜的蔬菜品质和缤纷的蔬菜品种，而且还能拥有“身在安省，吃遍全球”的跨季水果自由体验。
+                </p>
+                <br/>
+                <p>
+                    在省时省力的同时，也能体验到“一顿就吃完，绝对不浪费”的快乐。菜鸟生鲜，将新鲜多样的平价蔬菜与精品水果送到您的门前，摆上您的餐桌，让您足不出户遍享万千果蔬。
+                </p>
+            </div>
+            <div class="col-6">
+                <img src="img/text1.webp" alt="">
+            </div>
+        </div>
+        <div class="row m-5">
+            <div class="col-6">
+                <img src="img/text2.webp" alt="">
+            </div>
+            <div class="col-6">
+                <h2>本地“菜鸟”，本地新鲜！</h2>
+                <p>
+                    “菜鸟生鲜”作为在疫情中顽强诞生的安省本土品牌，对于本地农场时时刻刻都表示着百分之百的支持。疫情当下，许多安省本地的中小型农场企业受到重创。
+                </p>
+                <br/>
+                <p>
+                    我们的责任与目标则是通过“菜鸟生鲜”，本地社区群体能够与本地农场产生“互利互助”的关系。"菜鸟生鲜“致力于与更多的安省合法持牌农场合作，在为客人省时省力的同时，将多样又新鲜的蔬菜送到千家万户的门前。在亲朋好友们享受着“丰富的新鲜”同时，也在很大程度上，为疫情中受挫的本地中小型农场重新注入了生机。
+                </p>
+            </div>
+        </div>
+        <div class="row m-5">
+            <div class="col-6">
+                <h2>选择“菜鸟”，杜绝浪费！</h2>
+                <p>
+                    即便是在发达的今天，“食物浪费”仍是被联合国列入讨论的全球性问题。数据显示，在2019年消费者可获得的所有食物中，有17%会被丢弃，而粮农组织在2021年9月29日“国际提高粮食损失和浪费意识日“之际表示，“由于新冠大流行，今天又有1.32亿人面临粮食和营养不安全问题”。
+                </p>
+                <br/>
+                <p>
+                    在安省生活的小伙伴，大多都在从超市购买蔬菜时遇到过“买了一大包绿叶菜，吃了一两次，剩下的都坏掉”的体验。“菜鸟生鲜”致力于服务本地社区群体，为各位客人排忧解难。所以针对“浪费”这样的情况，我们采用了“一磅原则”。在“菜鸟蔬菜”中选购的产品，每样产品当中的新鲜蔬菜都只有一磅，也就是老百姓餐桌上“一盘菜”的量，就算您是一个人，也会在“两顿饭”之内解决掉这种蔬菜。“菜鸟蔬菜”还针对每一种新鲜蔬菜采用了独立包装的方式，在新鲜度与保鲜寿命大大提升的同时，也杜绝了“买少不够，买多浪费”的状况。
+                </p>
+            </div>
+            <div class="col-6">
+                <img src="img/text3.webp" alt="">
+            </div>
+        </div>
+    </div>
+    <!--    小屏幕显示-->
+    <div class="content_about_sm d-block d-lg-none">
+        <div id="carouselExampleControls" class="carousel slide" data-interval=false data-bs-ride="carousel" >
+            <div class="carousel-inner" id="cas_inner">
+                <div data-value="1" class="carousel-item active">
+                    <div class="col-10 offset-1">
+                        <h2>关于"菜鸟"</h2>
+                        <p>
+                            Vegebird-菜鸟生鲜，从2020年入驻安省以来，已覆盖大多数GTA地区以及周边城市。我们致力于向客户提供优质严选的产品和贴心严谨的服务。在“菜鸟生鲜”，您不仅可以享受到新鲜的蔬菜品质和缤纷的蔬菜品种，而且还能拥有“身在安省，吃遍全球”的跨季水果自由体验。
+                        </p>
+                        <br/>
+                        <p>
+                            在省时省力的同时，也能体验到“一顿就吃完，绝对不浪费”的快乐。菜鸟生鲜，将新鲜多样的平价蔬菜与精品水果送到您的门前，摆上您的餐桌，让您足不出户遍享万千果蔬。
+                        </p>
+                    </div>
+                </div>
+                <div data-value="2" class="carousel-item ">
+                    <div class="col-10 offset-1">
+                        <h2>本地“菜鸟”，本地新鲜！</h2>
+                        <p>
+                            “菜鸟生鲜”作为在疫情中顽强诞生的安省本土品牌，对于本地农场时时刻刻都表示着百分之百的支持。疫情当下，许多安省本地的中小型农场企业受到重创。
+                        </p>
+                        <br/>
+                        <p>
+                            我们的责任与目标则是通过“菜鸟生鲜”，本地社区群体能够与本地农场产生“互利互助”的关系。"菜鸟生鲜“致力于与更多的安省合法持牌农场合作，在为客人省时省力的同时，将多样又新鲜的蔬菜送到千家万户的门前。在亲朋好友们享受着“丰富的新鲜”同时，也在很大程度上，为疫情中受挫的本地中小型农场重新注入了生机。
+                        </p>
+                    </div>
+                </div>
+                <div data-value="3" class="carousel-item">
+                    <div class="col-10 offset-1">
+                        <h2>选择“菜鸟”，杜绝浪费！</h2>
+                        <p>
+                            即便是在发达的今天，“食物浪费”仍是被联合国列入讨论的全球性问题。数据显示，在2019年消费者可获得的所有食物中，有17%会被丢弃，而粮农组织在2021年9月29日“国际提高粮食损失和浪费意识日“之际表示，“由于新冠大流行，今天又有1.32亿人面临粮食和营养不安全问题”。
+                        </p>
+                        <br/>
+                        <p>
+                            在安省生活的小伙伴，大多都在从超市购买蔬菜时遇到过“买了一大包绿叶菜，吃了一两次，剩下的都坏掉”的体验。“菜鸟生鲜”致力于服务本地社区群体，为各位客人排忧解难。所以针对“浪费”这样的情况，我们采用了“一磅原则”。在“菜鸟蔬菜”中选购的产品，每样产品当中的新鲜蔬菜都只有一磅，也就是老百姓餐桌上“一盘菜”的量，就算您是一个人，也会在“两顿饭”之内解决掉这种蔬菜。“菜鸟蔬菜”还针对每一种新鲜蔬菜采用了独立包装的方式，在新鲜度与保鲜寿命大大提升的同时，也杜绝了“买少不够，买多浪费”的状况。
+                        </p>
+                    </div>
+                </div>
+                <div data-value="4" class="carousel-item">
+                    <div  class="col-10 offset-1">
+                        <img class="w-100" src="img/text1.webp" alt="">
+                    </div>
+                </div>
+                <div data-value="5" class="carousel-item">
+                    <div class="col-10 offset-1">
+                        <img class="w-100" src="img/text2.webp" alt="">
+                    </div>
+                </div>
+                <div data-value="6" class="carousel-item">
+                    <div class="col-10 offset-1">
+                        <img class="w-100" src="img/text3.webp" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="row  justify-content-around">
+                <button  class="d-inline-block col-1 border-0 bg-white " type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">&lt;</button>
+                <span id="about_num" class="col-1">1/6</span>
+                <button  class="d-inline-block col-1 border-0 bg-white " type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">&gt;</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--蔬菜部分-->
+<div class="container-fluid sc mt-5 pt-5 pb-5">
+    <div class="container-fluid container-lg">
+        <div class="row  align-items-center">
+            <div class="col-12 col-lg-6">
+                <h2>菜鸟蔬菜</h2>
+                <p>
+                    菜鸟生鲜100%支持本地农场，用每日新鲜到货的蔬菜为不同规模的家庭量身打造的蔬菜盛宴。不仅让各位不再花“大价钱”买别人挑剩下的库存菜，更是通过“每样蔬菜一磅”的原则，从根本上解决了“买一大包吃不完”的尴尬状况。
+                </p>
+            </div>
+            <div class="col-12 col-lg-6">
+                <img src="img/text4.webp" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!--蔬菜商品-->
+<div class="container list-sc">
+    <h2 class="mt-5 mb-5">菜鸟蔬菜</h2>
+    <div class=" row">
+        {{each vegetable_index}}
+        <div class="col-12 col-lg-6 p-3 border-bottom ">
+            <a href="/vegetable_commodity?id={{$value.id}}">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>{{$value.title}}</h2>
+                        <p>${{$value.price}}</p>
+                        <p class="xzsc">{{$value.content}}</p>
+                    </div>
+                    <div class="col-4">
+                        <img src=img/{{$value.img[0]}} alt="{{$value.title}}">
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<!--水果部分-->
+<div class="container-fluid sc mt-5 pt-5 pb-5">
+    <div class="container-fluid container-lg">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-6">
+                <img src="img/s1.webp" alt="">
+            </div>
+            <div class="col-12 col-lg-6">
+                <h2>严选优质进口水果</h2>
+                <p>
+                    菜鸟生鲜独有的空运水果，让您在寒冷的大多地区也能享受到跨季节性的水果自由！！
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--水果商品-->
+<div class="container list-sc">
+    <h2 class="mt-5 mb-5">精品水果</h2>
+    <div class=" row">
+        {{each fruit_index}}
+        <div class="col-12 col-lg-6 p-3 border-bottom">
+            <a href="/fruit_commodity?id={{$value.id}}">
+                <div class="row">
+                    <div class="col-8">
+                        <h2>{{$value.title}}</h2>
+                        <p>${{$value.price}}</p>
+                        <p class="xzsc">{{$value.content}}</p>
+                    </div>
+                    <div class="col-4">
+                        <img src="img/{{$value.img[0]}}" alt="{{$value.title}}">
+                    </div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+    <div class="row justify-content-center pt-5">
+        <a href="/fruit" type="button" class="btn btn-light rounded-pill w-25">查看更多</a>
+    </div>
+</div>
+{{/block}}
+
+
+{{block 'js'}}
+<script>
+    <!--  关于模块小屏幕轮播图 下方文字  -->
+    setInterval(function (){
+        let num_m=$("#cas_inner>div").length
+        let num_z=$("#cas_inner>div[class*='active']").attr("data-value")
+        $("#about_num").html(`${num_z}/${num_m}`)
+    },1)
+</script>
+{{/block}}

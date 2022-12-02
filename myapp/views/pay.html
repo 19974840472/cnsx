@@ -1,0 +1,217 @@
+<!--引入模板-->
+{{extend './public.html'}}
+
+<!--css文件-->
+{{block 'css'}}
+<link rel="stylesheet" href="css/index.css">
+{{/block}}
+
+<!--内容-->
+{{block 'content'}}
+<!--订单页面-->
+<div class="container">
+  <div class="row">
+    <h2 class="text-center login"><a href="/shopping" class="fs-2 text-success">返回购物车</a></h2>
+    <div class="col-lg-6 mt-5 " id="has">
+      <h3 class="text-center">商品信息</h3>
+      <div class="row border-bottom pt-3 pb-3 m-0">
+        <div class="col-8  text-start row">商品</div>
+        <div class="col-2 p-0 text-center">数量</div>
+        <div class="col-2 p-0 text-center">价格</div>
+      </div>
+      {{each commodity}}
+      <div class="row border-bottom pt-3 pb-3 m-0">
+        <div class="col-8 col-lg-8 text-start row p-0 m-0">
+          <div class="col-lg-3 col-8 p-0">
+            <a href="{{$value.url}}"><img src="img/{{$value.img}}" class="w-100" alt=""></a>
+          </div>
+          <div class="col-lg-9 col-4 row p-0 m-0 ">
+            <h2 class="row text-center p-0 m-0"><a href="{{$value.url}}" class="text-success row align-items-center justify-content-center m-0 p-0">{{$value.name}}</a></h2>
+          </div>
+        </div>
+        <div class="col-2 col-lg-2 p-0 m-0 justify-content-center row align-items-center">{{$value.num}}</div>
+        <div class="col-2 col-lg-2 p-0 m-0 justify-content-center row align-items-center price">{{($value.num*$value.price).toFixed(2)}}</div>
+      </div>
+      {{/each}}
+      <div id="zj" class="text-end mt-5"></div>
+    </div>
+    <div class="col-lg-6  mt-5 container-fluid container-lg ">
+      <h3 class="text-center">订单信息</h3>
+      <div class="container-fluid container-lg p-0">
+        <form class="row g-3 needs-validation" novalidate>
+          <div class="col-md-12 position-relative">
+            <label for="validationTooltip04" class="form-label">国家</label>
+            <select class="form-select" id="validationTooltip04" required >
+              <option selected disabled value="">国家</option>
+              <option>中国</option>
+            </select>
+          </div>
+          <div class="col-md-12 position-relative">
+            <label  class="form-label">收货人</label>
+            <input type="text" class="form-control"  placeholder="收货人" required>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label class="form-label">省份</label>
+            <select class="form-select"  required >
+              <option selected disabled value="">省份</option>
+              <option>江西省</option>
+            </select>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label  class="form-label">城市</label>
+            <select class="form-select"  required >
+              <option selected disabled value="">城市</option>
+              <option>南昌市</option>
+            </select>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label  class="form-label">区县</label>
+            <select class="form-select"  required >
+              <option selected disabled value="">区县</option>
+              <option>高新区</option>
+            </select>
+          </div>
+          <div class="col-md-12 position-relative">
+            <label  class="form-label">详细地址</label>
+            <input type="text" class="form-control"  placeholder="详细地址" required>
+          </div>
+          <div class="col-md-12 position-relative">
+            <label  class="form-label">手机号码</label>
+            <input type="text" class="form-control" id="sjhm" placeholder="手机号码">
+            <span style="font-size: 10px"></span>
+          </div>
+          <div class="col-12 text-end">
+            <button type="button" id="jxfk" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" disabled>
+              继续付款
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--付款弹出框-->
+<div class="modal fade pay" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">支付宝扫描二维码付款</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
+      </div>
+      <div class="modal-body">
+        <img src="img/pay.jpg" class="w-100" alt="">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="wc" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">已完成付款</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--支付成功弹窗-->
+<div class="modal fade shopping" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel2">支付</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
+      </div>
+      <div class="modal-body">
+        <h2 id="zc_h2">付款成功,前往订单页面</h2>
+      </div>
+      <div class="modal-footer">
+        <a href="/my"  type="button" class="btn btn-primary" data-bs-dismiss="modal" id="wc2">确认</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/block}}
+
+
+<!--js文件-->
+{{block 'js'}}
+<script src="js/template-web.js"></script>
+
+
+<script>
+
+  //计算商品总价
+  let arr_zj=$(".price")
+  let sum=0
+    for (var i=0;i<arr_zj.length;i++){
+      sum+=parseFloat(arr_zj[i].innerHTML)
+    }
+  $("#zj").html(`总价： $${sum.toFixed(2)} `)
+
+
+
+  //判断订单信息是否填写完整
+  let select=$(".position-relative select")
+  let input=$(".needs-validation .position-relative:not(:last-child) input")
+  function num_fn(){
+    var num=0
+    for (let i=0;i<input.length-1;i++){
+      if (input[i].value){
+        num+=1
+      }
+    }
+    for (let i=0;i<select.length;i++){
+      if (select[i].value){
+        num+=1
+      }
+    }
+    var value=input[2].value;
+    let reg=new RegExp("^1(3\\d|4[5-9]|5[0-35-9]|6[567]|7[0-8]|8\\d|9[0-35-9])\\d{8}$","g")
+    if (reg.test(value)){
+      $(this).next().html("正确").css("color","green")
+      num+=1
+    }else {
+      $(this).next().html("请输入正确手机号").css("color","red")
+    }
+    if (num===7){
+      $("#jxfk").removeAttr("disabled")
+    }else {
+      $("#jxfk").attr("disabled","disabled")
+    }
+  }
+  select.change(num_fn)
+  input.on("input",num_fn)
+
+
+
+
+  // 支付成功发送请求
+  $("#wc").click(function (e){
+    e.preventDefault()
+    let orders_id=parseInt(Math.random()*100000000)
+    let consignee=input[0].value
+    let address=`${select[0].value} ${select[1].value} ${select[2].value} ${select[3].value} ${input[1].value}`
+    let money=sum.toFixed(2)
+    let phoneNum=input[2].value
+    console.log(consignee,address,money,phoneNum,orders_id)
+    $.ajax({
+      // 请求地址
+      url:"/api/pay",
+      //请求类型
+      type:"POST",
+      //请求参数
+      data:{consignee,address,money,phoneNum,orders_id},
+      //请求成功
+      success:function (result){
+        if (result.code===200){
+          $("#wc2").click(function (){
+            location.href="/my"
+          })
+        }
+      },
+      //请求失败
+      error:function (error){
+        alert("请求失败:",error);
+      }
+    })
+  })
+</script>
+{{/block}}
